@@ -33,14 +33,10 @@ def get_repository_root():
 
 
 def publish_crate(crate_root, dry_run):
-    args = []
-    args.append("cargo")
-    args.append("publish")
+    args = ["cargo", "publish"]
     if dry_run:
         args.append("--dry-run")
-    args.append("--manifest-path")
-    args.append(f"{crate_root}/Cargo.toml")
-
+    args.extend(("--manifest-path", f"{crate_root}/Cargo.toml"))
     subprocess.run(args, check=True)
 
 
